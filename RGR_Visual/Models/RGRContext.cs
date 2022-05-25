@@ -55,11 +55,12 @@ namespace RGR_Visual.Models
                 entity.HasOne(d => d.OwnerNavigation)
                     .WithMany(p => p.Horses)
                     .HasForeignKey(d => d.Owner)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.TrainerNavigation)
                     .WithMany(p => p.Horses)
-                    .HasForeignKey(d => d.Trainer);
+                    .HasForeignKey(d => d.Trainer)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Jockey>(entity =>
@@ -97,7 +98,7 @@ namespace RGR_Visual.Models
                 entity.HasOne(d => d.RacecourseNavigation)
                     .WithMany(p => p.Races)
                     .HasForeignKey(d => d.Racecourse)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Racecourse>(entity =>
@@ -131,15 +132,18 @@ namespace RGR_Visual.Models
 
                 entity.HasOne(d => d.HorseNavigation)
                     .WithMany()
-                    .HasForeignKey(d => d.Horse);
+                    .HasForeignKey(d => d.Horse)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.JockeyNavigation)
                     .WithMany()
-                    .HasForeignKey(d => d.Jockey);
+                    .HasForeignKey(d => d.Jockey)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Race)
                     .WithMany()
-                    .HasForeignKey(d => new { d.Date, d.RaceNumber, d.Racecourse });
+                    .HasForeignKey(d => new { d.Date, d.RaceNumber, d.Racecourse })
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Trainer>(entity =>

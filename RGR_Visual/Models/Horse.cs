@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RGR_Visual.Models
 {
-    public partial class Horse
+    public partial class Horse : IEquatable<Horse>
     {
         public string? Name { get; set; } = null!;
         public string? Gender { get; set; }
@@ -25,6 +25,11 @@ namespace RGR_Visual.Models
             Owner = "";
             OwnerNavigation = null!;
             TrainerNavigation = null;
+        }
+
+        public bool Equals(Horse? other)
+        {
+            return (this.Name == other.Name);
         }
     }
 }

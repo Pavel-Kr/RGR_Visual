@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="RGR_Visual.Views.QueryEditor"
+        Title="QueryEditor">
+	<SplitView IsPaneOpen="True" OpenPaneLength="200" DisplayMode="Inline">
+		<SplitView.Pane>
+			<StackPanel>
+				<Button Content="Создать запрос" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+				
+			</StackPanel>
+		</SplitView.Pane>
+		<Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*,*">
+			<TextBlock Text="Таблицы:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<StackPanel Grid.Row="0" Grid.Column="1">
+				<TextBlock Text="Доступные:"/>
+				<ListBox/>
+			</StackPanel>
+			<StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Button Content="Добавить" HorizontalAlignment="Stretch"/>
+				<Button Content="Удалить" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Grid.Row="0" Grid.Column="3">
+				<ListBox/>
+			</StackPanel>
+			<TextBlock Text="Столбцы:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="0">
+				<ComboBoxItem>Условие выборки</ComboBoxItem>
+				<ComboBoxItem>Группировать по:</ComboBoxItem>
+				<ComboBoxItem>Соединить с:</ComboBoxItem>
+			</ComboBox>
+		</Grid>
+	</SplitView>
+</Window>

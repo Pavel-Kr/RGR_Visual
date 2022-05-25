@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using RGR_Visual.Models;
+using ReactiveUI;
 
 namespace RGR_Visual.ViewModels
 {
@@ -28,6 +29,7 @@ namespace RGR_Visual.ViewModels
             Results = Db.Results.Local.ToObservableCollection();
             Db.Owners.Load<Owner>();
             Owners = Db.Owners.Local.ToObservableCollection();
+            Error = "";
         }
         public ObservableCollection<Horse> Horses { get; }
         public ObservableCollection<Trainer> Trainers { get; }
@@ -36,35 +38,60 @@ namespace RGR_Visual.ViewModels
         public ObservableCollection<Racecourse> Racecourses { get; }
         public ObservableCollection<Result> Results { get; }
         public ObservableCollection<Owner> Owners { get; }
+        string error;
+        public string Error
+        {
+            get => error;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref error, value);
+            }
+        }
         public void Save()
         {
-            Db.SaveChanges();
+            try
+            {
+                Db.SaveChanges();
+                Error = "";
+            }
+            catch (Exception ex)
+            {
+                Error += "Не удалось сохранить изменения: " + ex.Message + "\n";
+            }
         }
         public void AddRow(int index)
         {
-            switch (index)
+            try
             {
-                case 0:
-                    Db.Horses.Add(new Horse());
-                    break;
-                case 1:
-                    Db.Trainers.Add(new Trainer());
-                    break;
-                case 2:
-                    Db.Jockeys.Add(new Jockey());
-                    break;
-                case 3:
-                    Db.Owners.Add(new Owner());
-                    break;
-                case 4:
-                    Db.Races.Add(new Race());
-                    break;
-                case 5:
-                    Db.Results.Add(new Result());
-                    break;
-                case 6:
-                    Db.Racecourses.Add(new Racecourse());
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        Db.Horses.Add(new Horse());
+                        break;
+                    case 1:
+                        Db.Trainers.Add(new Trainer());
+                        break;
+                    case 2:
+                        Db.Jockeys.Add(new Jockey());
+                        break;
+                    case 3:
+                        Db.Owners.Add(new Owner());
+                        break;
+                    case 4:
+                        Db.Races.Add(new Race());
+                        break;
+                    case 5:
+                        Db.Results.Add(new Result());
+                        break;
+                    case 6:
+                        Db.Racecourses.Add(new Racecourse());
+                        break;
+                }
+                Error = "";
+            }
+            catch (Exception ex)
+            {
+                Error += "Не удалось добавить строку: " + ex.Message + "\n";
             }
         }
         public void DeleteRow(int index)
