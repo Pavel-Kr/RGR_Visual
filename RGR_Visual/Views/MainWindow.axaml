@@ -366,13 +366,33 @@
 					</DataGrid>
 				</TabItem>
 			</TabControl>
-				<TabControl Name="testTab" Grid.Column="1">
+				<TabControl Name="testTab" Grid.Column="1" Items="{Binding Tabs}">
 					<TabControl.ItemTemplate>
 						<DataTemplate>
-							<TextBlock Text="{Binding Header}"/>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="{Binding Header}"/>
+								<Button Content="x"/>
+							</StackPanel>
 						</DataTemplate>
 					</TabControl.ItemTemplate>
-					
+					<TabControl.ContentTemplate>
+						<DataTemplate>
+							<ScrollViewer HorizontalScrollBarVisibility="Auto">
+								<ListBox Items="{Binding Content}">
+									<ListBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<StackPanel Orientation="Horizontal"/>
+										</ItemsPanelTemplate>
+									</ListBox.ItemsPanel>
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<ItemsRepeater Items="{Binding}"/>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+							</ScrollViewer>
+						</DataTemplate>
+					</TabControl.ContentTemplate>
 				</TabControl>
 			</Grid>
 		</ScrollViewer>

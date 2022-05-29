@@ -12,7 +12,18 @@ namespace RGR_Visual.Models
         }
         public static string GetAttr()
         {
-            return "JockeyName";
+            return "Jockey: Name";
+        }
+        public object? this[string property]
+        {
+            get
+            {
+                switch (property)
+                {
+                    case "Name": return Name;
+                }
+                return null;
+            }
         }
     }
     

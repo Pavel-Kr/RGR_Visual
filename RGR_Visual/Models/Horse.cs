@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RGR_Visual.Models
 {
-    public partial class Horse : IEquatable<Horse>
+    public partial class Horse : Table
     {
         public string? Name { get; set; } = null!;
         public string? Gender { get; set; }
@@ -27,13 +27,30 @@ namespace RGR_Visual.Models
             TrainerNavigation = null;
         }
 
+        public object? this[string property]
+        {
+            get
+            {
+                switch (property)
+                {
+                    case "Name": return Name;
+                    case "Gender": return Gender;
+                    case "Age": return Age;
+                    case "Weight": return Weight;
+                    case "Trainer": return Trainer;
+                    case "Owner": return Owner;
+                }
+                return null;
+            }
+        }
+
         public bool Equals(Horse? other)
         {
             return (this.Name == other.Name);
         }
         public static string[] GetAttr()
         {
-            return new[] { "HorseName", "Gender", "Age", "Weight" };
+            return new[] { "Horse: Name", "Horse: Gender", "Horse: Age", "Horse: Weight", "Horse: Trainer", "Horse: Owner" };
         }
     }
 }

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 
-namespace RGR_Visual.Models
+namespace RGR_Visual.ViewModels
 {
-    public class TabItemModel
+    public class Tab
     {
         public string Header { get; set; }
-        public List<string> DataGridHeaders { get; set; }
+        public object Content { get; set; }
     }
 }

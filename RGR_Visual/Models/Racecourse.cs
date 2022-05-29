@@ -16,7 +16,18 @@ namespace RGR_Visual.Models
         public virtual ICollection<Race> Races { get; set; }
         public static string GetAttr()
         {
-            return "RacecourseName";
+            return "Racecourse: Name";
+        }
+        public object? this[string property]
+        {
+            get
+            {
+                switch (property)
+                {
+                    case "Name": return Name;
+                }
+                return null;
+            }
         }
     }
 }

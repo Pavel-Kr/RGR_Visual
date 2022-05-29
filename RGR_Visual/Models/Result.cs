@@ -29,7 +29,24 @@ namespace RGR_Visual.Models
         }
         public static string[] GetAttr()
         {
-            return new[] { "FinishPosition", "DistanceBetween" };
+            return new[] { "Result: FinishPosition", "Result: DistanceBetween", "Result: Horse", "Result: Date", "Result: RaceNumber", "Result: Racecourse", "Result: Jockey" };
+        }
+        public object? this[string property]
+        {
+            get
+            {
+                switch (property)
+                {
+                    case "Horse": return Horse;
+                    case "Date": return Date;
+                    case "RaceNumber": return RaceNumber;
+                    case "Racecourse": return Racecourse;
+                    case "FinishPosition": return FinishPosition;
+                    case "DistanceBetween": return DistanceBetween;
+                    case "Jockey": return Jockey;
+                }
+                return null;
+            }
         }
     }
 }

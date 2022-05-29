@@ -4,6 +4,7 @@ using RGR_Visual.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive.Subjects;
 
 namespace RGR_Visual.Views
 {
@@ -22,7 +23,6 @@ namespace RGR_Visual.Views
             {
                 OpenEditor();
             };
-            context = new QueryEditorViewModel();
             this.FindControl<Button>("test").Click += delegate
             {
                 test1();
@@ -68,10 +68,12 @@ namespace RGR_Visual.Views
         }
         public void OpenEditor()
         {
+            var tmp = this.DataContext as MainWindowViewModel;
+            context = new QueryEditorViewModel(tmp);
             editor = new QueryEditor { DataContext = context };
             editor.Show();
         }
-        public void CreateGrid(TabItemModel tab)
+        public void CreateGrid(TabItemModel tab, List<List<string>> test)
         {
             var context = this.DataContext as MainWindowViewModel;
             DataGrid grid = new DataGrid();
@@ -79,19 +81,17 @@ namespace RGR_Visual.Views
             {
                 var column = new DataGridTextColumn();
                 column.Header = header;
+                grid.Columns.Add(column);
             }
-            TabItem item = new TabItem();
+            Tab item = new Tab();
             item.Header = tab.Header;
             item.Content = grid;
-            context.Tabs.Add(tab);
-            var items = this.FindControl<TabControl>("testTab").Items;
-            var items1 = (ObservableCollection<TabItem>)items;
-            items1.Add(item);
-            this.FindControl<TabControl>("testTab").Items = items;
+            context.Tabs.Add(item);
         }
         public void test1()
         {
-            CreateGrid(new TabItemModel { Header = "aaaa", DataGridHeaders = new System.Collections.ObjectModel.ObservableCollection<string>(new List<string> { "test1", "test2" }) });
+            CreateGrid(new TabItemModel { Header = "aaa", DataGridHeaders = new List<string> { "test1","test2" } }, new List<List<string>> { new List<string> { "test row 1", "test row 1" }, new List<string> { "test row 2", "test row 2" } });
+            //CreateGrid(new TabItemModel { Header = "aaaa", DataGridHeaders = new System.Collections.ObjectModel.ObservableCollection<string>(new List<string> { "test1", "test2" }) },new List<List<string>> { new List<string> { "test row 1", "test row 1" }, new List<string> { "test row 2", "test row 2" } });
         }
     }
 }
