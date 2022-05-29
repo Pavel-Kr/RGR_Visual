@@ -9,7 +9,6 @@ namespace RGR_Visual.Models
         public string? Date { get; set; }
         public long? RaceNumber { get; set; }
         public string? Racecourse { get; set; }
-        public long? StartPosition { get; set; }
         public long? FinishPosition { get; set; }
         public string? DistanceBetween { get; set; }
         public string? Jockey { get; set; }
@@ -24,10 +23,13 @@ namespace RGR_Visual.Models
             Date = "";
             RaceNumber = 0;
             Racecourse = "";
-            StartPosition = 0;
             FinishPosition = 0;
             DistanceBetween = "";
             Jockey = "";
+        }
+        public static string[] GetAttr()
+        {
+            return new[] { "FinishPosition", "DistanceBetween" };
         }
     }
 }

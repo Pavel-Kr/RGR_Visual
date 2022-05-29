@@ -10,5 +10,10 @@ namespace RGR_Visual.Models
         {
             Name = "";
         }
+        public static string GetAttr()
+        {
+            return "JockeyName";
+        }
     }
+    
 }

@@ -13,7 +13,8 @@
     </Design.DataContext>
 	<Grid RowDefinitions="*,Auto,100">
 		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-			<TabControl Name="Tables">
+			<Grid ColumnDefinitions="Auto,*">
+			<TabControl Grid.Column="0" Name="Tables">
 				<TabItem Header="Лошадь" FontSize="18">
 					<DataGrid Name="Horses" Items="{Binding Horses}" CanUserResizeColumns="True">
 						<DataGrid.Columns>
@@ -39,7 +40,7 @@
 										</Border>
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
-							<DataGridTemplateColumn.CellEditingTemplate>
+								<DataGridTemplateColumn.CellEditingTemplate>
 									<DataTemplate>
 										<TextBox Text="{Binding Gender}"/>
 									</DataTemplate>
@@ -54,11 +55,11 @@
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 								<DataGridTemplateColumn.CellEditingTemplate>
-										<DataTemplate>
-											<NumericUpDown Value="{Binding Age}"/>
-										</DataTemplate>
-									</DataGridTemplateColumn.CellEditingTemplate>
-								</DataGridTemplateColumn>
+									<DataTemplate>
+										<NumericUpDown Value="{Binding Age}"/>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellEditingTemplate>
+							</DataGridTemplateColumn>
 							<DataGridTemplateColumn Header="Вес">
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
@@ -299,20 +300,6 @@
 									</DataTemplate>
 								</DataGridTemplateColumn.CellEditingTemplate>
 							</DataGridTemplateColumn>
-							<DataGridTemplateColumn Header="Стартовая позиция">
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<Border BorderBrush="Black" BorderThickness="0.2">
-											<TextBlock Text="{Binding StartPosition}" TextAlignment="Center"/>
-										</Border>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-								<DataGridTemplateColumn.CellEditingTemplate>
-									<DataTemplate>
-										<NumericUpDown Value="{Binding StartPosition}"/>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellEditingTemplate>
-							</DataGridTemplateColumn>
 							<DataGridTemplateColumn Header="Позиция на финише">
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
@@ -379,12 +366,22 @@
 					</DataGrid>
 				</TabItem>
 			</TabControl>
+				<TabControl Name="testTab" Grid.Column="1">
+					<TabControl.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Header}"/>
+						</DataTemplate>
+					</TabControl.ItemTemplate>
+					
+				</TabControl>
+			</Grid>
 		</ScrollViewer>
-		<Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
+		<Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*">
 			<Button Content="Добавить строку" Command="{Binding AddRow}" CommandParameter="{Binding #Tables.SelectedIndex}" Grid.Column="0"/>
 			<Button Content="Удалить строку" Grid.Column="1" Name="DeleteBtn"/>
 			<Button Content="Сохранить изменения" Command="{Binding Save}" Grid.Column="2"/>
 			<Button Content="Менеджер запросов" Name="EditorBtn" Grid.Column="3"/>
+			<Button Name="test" Content="Добавить таб" Grid.Column="4"/>
 		</Grid>
 		<ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto">
 			<Border BorderBrush="Black" BorderThickness="1">

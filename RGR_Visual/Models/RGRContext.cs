@@ -118,17 +118,15 @@ namespace RGR_Visual.Models
 
                 entity.Property(e => e.DistanceBetween).HasColumnType("STRING");
 
-                entity.Property(e => e.FinishPosition).HasColumnName("Finish position");
+                entity.Property(e => e.FinishPosition).HasColumnName("FinishPosition");
 
                 entity.Property(e => e.Horse).HasColumnType("STRING");
 
                 entity.Property(e => e.Jockey).HasColumnType("STRING");
 
-                entity.Property(e => e.RaceNumber).HasColumnName("Race number");
+                entity.Property(e => e.RaceNumber).HasColumnName("RaceNumber");
 
                 entity.Property(e => e.Racecourse).HasColumnType("STRING");
-
-                entity.Property(e => e.StartPosition).HasColumnName("Start position");
 
                 entity.HasOne(d => d.HorseNavigation)
                     .WithMany()

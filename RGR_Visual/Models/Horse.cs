@@ -31,5 +31,9 @@ namespace RGR_Visual.Models
         {
             return (this.Name == other.Name);
         }
+        public static string[] GetAttr()
+        {
+            return new[] { "HorseName", "Gender", "Age", "Weight" };
+        }
     }
 }

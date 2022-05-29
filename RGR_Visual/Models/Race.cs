@@ -20,5 +20,9 @@ namespace RGR_Visual.Models
             Distance = "";
             Type = "";
         }
+        public static string[] GetAttr()
+        {
+            return new[] { "Date", "Number", "Distance", "Type" };
+        }
     }
 }

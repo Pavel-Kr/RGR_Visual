@@ -14,5 +14,9 @@ namespace RGR_Visual.Models
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Horse> Horses { get; set; }
+        public static string GetAttr()
+        {
+            return "OwnerName";
+        }
     }
 }

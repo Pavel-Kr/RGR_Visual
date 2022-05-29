@@ -30,6 +30,7 @@ namespace RGR_Visual.ViewModels
             Db.Owners.Load<Owner>();
             Owners = Db.Owners.Local.ToObservableCollection();
             Error = "";
+            Tabs = new ObservableCollection<TabItemModel>();
         }
         public ObservableCollection<Horse> Horses { get; }
         public ObservableCollection<Trainer> Trainers { get; }
@@ -38,6 +39,7 @@ namespace RGR_Visual.ViewModels
         public ObservableCollection<Racecourse> Racecourses { get; }
         public ObservableCollection<Result> Results { get; }
         public ObservableCollection<Owner> Owners { get; }
+        public ObservableCollection<TabItemModel> Tabs { get; }
         string error;
         public string Error
         {

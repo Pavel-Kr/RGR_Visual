@@ -2,12 +2,15 @@ using Avalonia.Controls;
 using RGR_Visual.ViewModels;
 using RGR_Visual.Models;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace RGR_Visual.Views
 {
     public partial class MainWindow : Window
     {
         QueryEditor editor;
+        QueryEditorViewModel context;
         public MainWindow()
         {
             InitializeComponent();
@@ -15,10 +18,14 @@ namespace RGR_Visual.Views
             {
                 Delete();
             };
-            editor = new QueryEditor();
             this.FindControl<Button>("EditorBtn").Click += delegate
             {
                 OpenEditor();
+            };
+            context = new QueryEditorViewModel();
+            this.FindControl<Button>("test").Click += delegate
+            {
+                test1();
             };
         }
         public void Delete()
@@ -61,7 +68,30 @@ namespace RGR_Visual.Views
         }
         public void OpenEditor()
         {
+            editor = new QueryEditor { DataContext = context };
             editor.Show();
+        }
+        public void CreateGrid(TabItemModel tab)
+        {
+            var context = this.DataContext as MainWindowViewModel;
+            DataGrid grid = new DataGrid();
+            foreach(string header in tab.DataGridHeaders)
+            {
+                var column = new DataGridTextColumn();
+                column.Header = header;
+            }
+            TabItem item = new TabItem();
+            item.Header = tab.Header;
+            item.Content = grid;
+            context.Tabs.Add(tab);
+            var items = this.FindControl<TabControl>("testTab").Items;
+            var items1 = (ObservableCollection<TabItem>)items;
+            items1.Add(item);
+            this.FindControl<TabControl>("testTab").Items = items;
+        }
+        public void test1()
+        {
+            CreateGrid(new TabItemModel { Header = "aaaa", DataGridHeaders = new System.Collections.ObjectModel.ObservableCollection<string>(new List<string> { "test1", "test2" }) });
         }
     }
 }

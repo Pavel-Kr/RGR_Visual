@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using RGR_Visual.ViewModels;
 
 namespace RGR_Visual.Views
 {
