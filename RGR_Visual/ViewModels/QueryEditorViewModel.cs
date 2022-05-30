@@ -16,7 +16,6 @@ namespace RGR_Visual.ViewModels
         public ObservableCollection<string> Rows { get; }
         public ObservableCollection<string> ChosenRows { get; }
         MainWindowViewModel main;
-        public Dictionary<string, object> DBTables { get; set; }
         List<Dictionary<string,object>> KeyValues { get; set; }
         public ObservableCollection<string> Operators { get; }
         public string Condition {
@@ -89,17 +88,6 @@ namespace RGR_Visual.ViewModels
             ChosenRows = new ObservableCollection<string>();
             this.main = main;
             Operators = new ObservableCollection<string> { "", "<", "<=", ">", ">=", "=", "AVG", "COUNT", "MAX", "MIN" };
-            /*DBTables = new Dictionary<string, ObservableCollection<Table>>()
-            {
-                {"Horse",main.Horses },
-                {"Trainer",main.Trainers },
-                {"Owner",main.Owners },
-                {"Jockey",main.Jockeys },
-                {"Race",main.Races },
-                {"Result",main.Results },
-                {"Racecourse",main.Racecourses }
-            };*/
-
         }
         public void Choose()
         {
@@ -216,14 +204,6 @@ namespace RGR_Visual.ViewModels
             string column = str1[1];
             return column;
         }
-
-        public ObservableCollection<int> IsFiltred { get; set; }
-
-        public void Filter()
-        {
-            for (int i = 0; i < ) 
-        }
-
         public void Select()
         {
             List<List<object>> queryList = new();
